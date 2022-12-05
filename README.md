@@ -9,9 +9,9 @@ Fraser Gehrig
 - [Installation](#installation)
     - [Github](#github)
 - [Examples](#examples)
-    - [Scrap Player Stats For a single year](#scrap-player-stats-for-a-single-year)
-    - [Scrap Game Stats For a single year](#scrap-game-stats-for-a-single-year)
-    - [Scrape Game By Game Results For a Single Year](#scrape-game-by-game-results-for-a-single-year)
+    - [Get  player stats for a single year](#get--player-stats-for-a-single-year)
+    - [Get game stats For a single year](#get-game-stats-for-a-single-year)
+    - [Get  game by game results for a single year](#get--game-by-game-results-for-a-single-year)
 
 <!-- markdown-toc end -->
 
@@ -56,7 +56,7 @@ The following section shows some example usages for this tool
 
 ```
 
-## Scrap Player Stats For a single year 
+## Get  player stats for a single year 
 
 
 ```python 
@@ -80,7 +80,7 @@ Young, Lewis           2            1     3     3
 
 ```
 
-## Scrap Game Stats For a single year 
+## Get game stats For a single year 
 
 
 ```python 
@@ -107,7 +107,7 @@ Young, Lewis           2            1     3     3
 
 ```
 
-## Scrape Game By Game Results For a Single Year
+## Get  game by game results for a single year
 
 
 ```python 
@@ -130,7 +130,9 @@ Young, Lewis           2            1     3     3
 ```
 
 
+# Licence 
 
+- [MIT](LICENCE.md)
 
 
 
