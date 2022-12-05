@@ -28,8 +28,6 @@ def get_player_stats(year: int = 2021) -> pd.DataFrame:
     if not (1987 <= year <= 2022):
         raise ValueError(f"{year=} is not in range: 1897-2021")
 
-   
-
     try:
         r = requests.get(f"https://afltables.com/afl/stats/{year}.html")
     except HTTPError as http_err:
@@ -38,7 +36,6 @@ def get_player_stats(year: int = 2021) -> pd.DataFrame:
         print(f"Exception: {e}")
     else:
         print("Loading Data:")
-
 
     html_content = BeautifulSoup(r.content, features="html.parser")
 
@@ -55,7 +52,6 @@ def get_player_stats(year: int = 2021) -> pd.DataFrame:
                 for key, value in player_stats.items()
                 if key != "player"
             }
-
 
     return pd.DataFrame.from_dict(players, orient="index")
 
