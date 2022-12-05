@@ -1,12 +1,8 @@
 from bs4 import BeautifulSoup
-from requests.api import head
 from requests.exceptions import HTTPError
 import requests
 import pandas as pd
-import numpy as np
 from typing import List
-import logging
-import os
 
 
 def get_player_stats(year: int = 2021) -> pd.DataFrame:
@@ -93,17 +89,7 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
     """
 
     if not (1965 <= year <= 2022):
-        raise ValueError(f"{year=} is not in range: 1965-2021")
-
-    # logging.basicConfig(
-    #     filename=os.path.join(
-    #         "AFL", "data", "logs", f"afl_stats_game_by_game_data_{year}.log"
-    #     ),
-    #     filemode="w",
-    #     level=logging.DEBUG,
-    #     format="%(asctime)s %(message)s",
-    #     datefmt="%m/%d/%Y %I:%M:%S %p",
-    # )
+        raise ValueError(f"{year=} is not in range: 1965-2022")
 
     teams = [
         "adelaide",
@@ -260,14 +246,3 @@ def get_game_by_game_results(year: int) -> pd.DataFrame:
             game_by_game = pd.concat([game_by_game, team_games], axis=0)
 
     return game_by_game
-
-
-def main():
-    os.chdir("/home/gabriel/Projects/sports-analytics/AFL/res/afl_table_data")
-    for i in range(1990, 2023):
-        df = get_game_by_game_stats(i)
-        df.to_parquet(f"AFL-Tables_game-by-game-stats_{i}.parquet")
-
-
-if __name__ == "__main__":
-    main()
