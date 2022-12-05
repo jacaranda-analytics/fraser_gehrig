@@ -3,19 +3,17 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-dynamic = ["version", "description"]
-name = "fraser_gehrig"
+name = "my_package"
+description = "fraser_gehrig"
 authors = [{name = "Harry Goodman", email = "harryfgoodman@gmail.com"}, {name = "Gabriel Dennis", email = "gabrieldennis17@gmail.com"}]
 readme = "README.md"
-license = { file = "LICENSE" } 
-classifiers = []
 requires-python = ">=3.8.1"
+license = {text = "MIT"}
 dependencies = [
     "pandas",
     "numpy", 
     "requests", 
     "bs4", 
 ]
-
-
+dynamic = ["version"]
 
