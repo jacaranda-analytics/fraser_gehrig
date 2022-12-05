@@ -8,6 +8,7 @@ Fraser Gehrig
 - [Description](#description)
 - [Installation](#installation)
     - [Github](#github)
+    - [Pip](#pip)
 - [Examples](#examples)
     - [Get  player stats for a single year](#get--player-stats-for-a-single-year)
     - [Get game stats For a single year](#get-game-stats-for-a-single-year)
@@ -26,7 +27,11 @@ This package is named after the famous St Kilda forward Fraser Gehrig because, w
 
 # Installation 
 
-Currently the best way to install this package is directly from github. 
+Currently there are various ways this package can be installed. 
+These include 
+
+- Github 
+- pip
 
 ## Github 
 
@@ -44,6 +49,14 @@ to install the  latest master branch, run the command.
 
 ```sh
 pip install https://github.com/jacaranda-analytics/fraser_gehrig/archive/master.zip
+```
+
+## Pip 
+
+To install through pip, simply run 
+
+```python 
+pip install fraser-gehrig
 ```
 
 
