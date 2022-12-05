@@ -88,9 +88,9 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
     Returns:
         pd.DataFrame: A pandas data frame which  has columns array([player, team, round, opponent, statistic, value])
     """
-
-    if not (1965 <= year <= 2022):
-        raise ValueError(f"{year=} is not in range: 1965-2022")
+    min_year, max_year = 1965, 2022
+    if not (min_year <= year <= max_year):
+        raise ValueError(f"{year=} is not in range: {min_year}-{max_year}")
 
     teams = [
         "adelaide",
@@ -114,7 +114,6 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
         "westcoast",
         "bullldogs",
     ]
-    ## REMOVE
 
     URL = "https://afltables.com/afl/stats/teams/"
     url_func = lambda team: f"{URL}{team}/{year}_gbg.html"
@@ -139,7 +138,6 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
                     s.string.replace("\xa0", "NA").replace("-", "NA")
                     for s in table_row.find_all("td")
                 ]
-                # table_content = [int(i) if i != 'NA' else np.np.NaN for idx, i in enumerate(table_content[:-1])]
 
                 if table_content[0] not in gbg_content.keys():
                     gbg_content[table_content[0]] = {table_name: table_content[1:-1]}
@@ -160,7 +158,7 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
             try:
                 dat = pd.DataFrame.from_dict(values)
             except ValueError as ve:
-                print(values.values())
+                print("Unable to parse values")
                 continue
             dat["player"] = key
             dat["round"] = dat.index.values
@@ -188,7 +186,7 @@ def get_game_by_game_results(year: int) -> pd.DataFrame:
         pd.DataFrame:
     """
     if year not in range(1965, 2023):
-        raise ValueError(f"{year} outside range (1965, 2022)")
+        raise ValueError(f"{year} outside range (1965, 2023)")
 
     URL = f"https://afltables.com/afl/stats/{year}t.html"
     r = requests.get(URL)
