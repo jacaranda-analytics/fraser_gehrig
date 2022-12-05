@@ -1,3 +1,7 @@
+[build-system]
+requires=""
+
+
 [project]
 dynamic = ["version", "description"]
 name = "fraser_gehrig"
