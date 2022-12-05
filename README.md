@@ -17,6 +17,7 @@ Fraser Gehrig
 
 <!-- markdown-toc end -->
 
+![Fraser Gehrig](https://i.ytimg.com/vi/fvE6R92tTG0/sddefault.jpg)
 
 # Description 
 
