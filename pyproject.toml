@@ -1,6 +1,6 @@
 [build-system]
-requires=""
-
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
 
 [project]
 dynamic = ["version", "description"]
