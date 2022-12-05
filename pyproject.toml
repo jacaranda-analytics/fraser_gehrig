@@ -1,0 +1,17 @@
+[project]
+dynamic = ["version", "description"]
+name = "fraser_gehrig"
+authors = [{name = "Harry Goodman", email = "harryfgoodman@gmail.com"}, {name = "Gabriel Dennis", email = "gabrieldennis17@gmail.com"}]
+readme = "README.md"
+license = { file = "LICENSE" } 
+classifiers = []
+requires-python = ">=3.8.1"
+dependencies = [
+    "pandas",
+    "numpy", 
+    "requests", 
+    "bs4", 
+]
+
+
+
