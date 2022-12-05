@@ -12,6 +12,7 @@ Fraser Gehrig
     - [Get  player stats for a single year](#get--player-stats-for-a-single-year)
     - [Get game stats For a single year](#get-game-stats-for-a-single-year)
     - [Get  game by game results for a single year](#get--game-by-game-results-for-a-single-year)
+- [Licence](#licence)
 
 <!-- markdown-toc end -->
 
