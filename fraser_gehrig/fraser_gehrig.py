@@ -21,8 +21,9 @@ def get_player_stats(year: int = 2021) -> pd.DataFrame:
         pd.DataFramet: A data frame with player names as the index and statistics as the column names.
 
     """
-    if not (1987 <= year <= 2022):
-        raise ValueError(f"{year=} is not in range: 1897-2021")
+    min_year, max_year = 1897, 2022
+    if not (min_year <= year <= max_year):
+        raise ValueError(f"{year=} is not in range: {min_year} - {max_year}")
 
     try:
         r = requests.get(f"https://afltables.com/afl/stats/{year}.html")
