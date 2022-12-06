@@ -6,6 +6,7 @@ Fraser Gehrig
 
 - [Fraser Gehrig ](#fraser-gehrig)
 - [Description](#description)
+- [Kaggle](#kaggle)
 - [Installation](#installation)
     - [GitHub](#github)
     - [Pip](#pip)
@@ -25,6 +26,11 @@ This is a small webscraper package to scrap AFL player and game statistics data 
 
 This package is named after the famous St Kilda forward Fraser Gehrig because, why not? 
 
+
+# Kaggle 
+
+A kaggle dataset of the entire set of scraped table data, using this package, is available [here](https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022). 
+The script which was used to scrape the set of tables and package up the dataset for kaggle is located [here](examples/kaggle_data.py). 
 
 # Installation 
 
@@ -63,6 +69,7 @@ pip install fraser-gehrig
 # Examples 
 
 The following section shows some example usages for this tool 
+
 
 ```python 
 
