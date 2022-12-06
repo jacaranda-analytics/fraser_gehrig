@@ -7,13 +7,13 @@ Fraser Gehrig
 - [Fraser Gehrig ](#fraser-gehrig)
 - [Description](#description)
 - [Installation](#installation)
-    - [Github](#github)
+    - [GitHub](#github)
     - [Pip](#pip)
 - [Examples](#examples)
-    - [Get  player stats for a single year](#get--player-stats-for-a-single-year)
+    - [Get player stats for a single year](#get--player-stats-for-a-single-year)
     - [Get game stats For a single year](#get-game-stats-for-a-single-year)
-    - [Get  game by game results for a single year](#get--game-by-game-results-for-a-single-year)
-- [Licence](#licence)
+    - [Get game by game results for a single year](#get--game-by-game-results-for-a-single-year)
+- [License](#license)
 
 <!-- markdown-toc end -->
 
@@ -28,25 +28,24 @@ This package is named after the famous St Kilda forward Fraser Gehrig because, w
 
 # Installation 
 
-Currently there are various ways this package can be installed. 
+Currently, there are various ways this package can be installed. 
 These include 
 
-- Github 
+- GitHub 
 - pip
 
-## Github 
+## GitHub 
 
-To install from github there are two options, 
-the first option is to clone the repository  and do a local install 
-from the cloned directory. 
+To install from GitHub there are two options, 
+the first option is to clone the repository and do a local installation from the cloned directory. 
 
 ```sh
 git clone git@github.com:jacaranda-analytics/fraser_gehrig.git
 cd fraser_gehrig/ && pip install . 
 ```
 
-The second option is to install from github without first cloning the repository, 
-to install the  latest master branch, run the command. 
+The second option is to install from GitHub without first cloning the repository, 
+to install the latest master branch, run the command. 
 
 ```sh
 pip install https://github.com/jacaranda-analytics/fraser_gehrig/archive/master.zip
@@ -71,7 +70,7 @@ The following section shows some example usages for this tool
 
 ```
 
-## Get  player stats for a single year 
+## Get player stats for a single year 
 
 
 ```python 
@@ -122,30 +121,29 @@ Young, Lewis           2            1     3     3
 
 ```
 
-## Get  game by game results for a single year
+## Get game by game results for a single year
 
 
 ```python 
 >>> fg.get_game_by_game_results(year = 2020)
-                team    #        Opponent       KI      MK       HB 
-0           Adelaide   R1          Sydney  142-200   41-68  107-113 
-1           Adelaide   R2   Port Adelaide  138-226  39-105  121-137 
-2           Adelaide   R3      Gold Coast  145-196   56-87  105-124 
-3           Adelaide   R4  Brisbane Lions  162-199   71-80    70-86 
-4           Adelaide   R5       Fremantle  170-197  79-109   133-88 
-..               ...  ...             ...      ...     ...      ... 
-13  Western Bulldogs  R14         Geelong  146-183   61-77  136-140 
-14  Western Bulldogs  R16      West Coast  157-175   59-80   162-86 
-15  Western Bulldogs  R17        Hawthorn  192-140   85-58  158-130 
-16  Western Bulldogs  R18       Fremantle  162-172   58-79  125-129 
-17  Western Bulldogs   EF        St Kilda  175-184   75-88  122-100 
+            team   round       opponent  kicks  ... marks_inside_50 one_percenters bounces goal_assist
+0           Adelaide   R1          Sydney  142-200  ...             6-8          38-47     7-0         7-7
+1           Adelaide   R2   Port Adelaide  138-226  ...            4-13          41-45      NA         5-9
+2           Adelaide   R3      Gold Coast  145-196  ...            2-10          33-36     2-4         2-7
+3           Adelaide   R4  Brisbane Lions  162-199  ...            5-19          34-42     1-3         5-9
+4           Adelaide   R5       Fremantle  170-197  ...            6-15          32-29     2-6         2-7
+..               ...  ...             ...      ...  ...             ...            ...     ...         ...
+13  Western Bulldogs  R14         Geelong  146-183  ...            10-7          49-40     1-5         7-7
+14  Western Bulldogs  R16      West Coast  157-175  ...            8-10          38-35     1-4         3-7
+15  Western Bulldogs  R17        Hawthorn  192-140  ...             9-5          61-50     0-1         9-4
+16  Western Bulldogs  R18       Fremantle  162-172  ...            12-8          55-31     6-3         8-5
+17  Western Bulldogs   EF        St Kilda  175-184  ...            9-12          48-44     3-6         4-7
 
 [324 rows x 25 columns]
-
 ```
 
 
-# Licence 
+# License 
 
 - [MIT](LICENCE.md)
 

@@ -254,6 +254,7 @@ def get_game_by_game_results(year: int) -> pd.DataFrame:
 
         # Create a dictionary to map columns to
         names_to_dict = {
+            "#": "round",
             "KI": "kicks",
             "MK": "marks",
             "HB": "handballs",
