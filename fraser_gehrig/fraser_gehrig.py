@@ -18,8 +18,7 @@ def get_player_stats(year: int = 2021) -> pd.DataFrame:
         Exception
 
     Returns:
-        pd.DataFramet: A data frame with player names as the index and statistics as the column names.
-
+        pd.DataFramet: A data frame with player names as the index and statistics as the column names
     """
     min_year, max_year = 1897, 2022
     if not (min_year <= year <= max_year):
@@ -79,14 +78,15 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
        https://afltables.com/afl/stats/teams/{team}/{year}_gbg.html
 
     Args:
-        year (int, optional): Year to retrieve stats from. Acceptable range (1965-2021).
-                                Defaults to 2021.
+        year (int, optional): Year to retrieve stats from.
+        Acceptable range (1965-2021). Defaults to 2021.
 
     Raises:
         ValueError: if year is outside the range 1965-2021
 
     Returns:
-        pd.DataFrame: A pandas data frame which  has columns array([player, team, round, opponent, statistic, value])
+        pd.DataFrame: A pandas data frame which
+        has columns array([player, team, round, opponent, statistic, value])
     """
     min_year, max_year = 1965, 2022
     if not (min_year <= year <= max_year):
@@ -116,7 +116,10 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
     ]
 
     URL = "https://afltables.com/afl/stats/teams/"
-    url_func = lambda team: f"{URL}{team}/{year}_gbg.html"
+
+    def url_func(team):
+        return f"{URL}{team}/{year}_gbg.html"
+
     gbg_content = {}
     for team in teams:
         r = requests.get(url_func(team))
@@ -140,13 +143,15 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
                 ]
 
                 if table_content[0] not in gbg_content.keys():
-                    gbg_content[table_content[0]] = {table_name: table_content[1:-1]}
+                    gbg_content[table_content[0]] = {
+                        table_name: table_content[1:-1]}
                     gbg_content[table_content[0]]["opponents"] = opponents
                     gbg_content[table_content[0]]["team"] = [
                         team for _ in range(len(opponents))
                     ]
                 else:
-                    gbg_content[table_content[0]][table_name] = table_content[1:-1]
+                    gbg_content[table_content[0]
+                                ][table_name] = table_content[1:-1]
     # Turn into pandas
     for key, values in gbg_content.items():
         if "df" not in locals():
@@ -173,10 +178,12 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
 
 def get_game_by_game_results(year: int) -> pd.DataFrame:
     """
-    Retrieve the detailed game by game afl statistics for each year between 1965 and 2021
+    Retrieve the detailed game by game afl statistics for each year
+    between 1965 and 2021
     available from https://afltables.com/afl/stats/{year}t.html
     Args:
-        year (int, optional): Year to retrieve stats from. Acceptable range (1965-2021).
+        year (int, optional): Year to retrieve stats from.
+                             Acceptable range (1965-2021).
                                 Defaults to 2021.
 
     Raises:
@@ -194,7 +201,8 @@ def get_game_by_game_results(year: int) -> pd.DataFrame:
 
     table_headers: str = []
     for header in html_content.find_all("thead"):
-        team_str = header.find("tr").find("th").find("a").previousSibling.string
+        team_str = header.find("tr").find(
+            "th").find("a").previousSibling.string
 
         table_headers.append(team_str.replace("Team Statistics [", "").strip())
     # Teams are repeated
@@ -244,4 +252,30 @@ def get_game_by_game_results(year: int) -> pd.DataFrame:
             team_games = pd.DataFrame(row_content, columns=column_headers)
             game_by_game = pd.concat([game_by_game, team_games], axis=0)
 
-    return game_by_game
+        # Create a dictionary to map columns to
+        names_to_dict = {
+            "KI": "kicks",
+            "MK": "marks",
+            "HB": "handballs",
+            "DI": "disposals",
+            "GL": "goals",
+            "BH": "behinds",
+            "HO": "hit_outs",
+            "TK": "tackles",
+            "RB": "rebound_50s",
+            "IF": "inside_50s",
+            "CL": "clearances",
+            "CG": "clangers",
+            "FF": "freekicks_for",
+            "FA": "freekicks_agains",
+            "BR": "brownlow_votes",
+            "CP": "contested_possesions",
+            "UP": "uncontested_possesions",
+            "CM": "contested_marks",
+            "MI": "marks_inside_50",
+            "1%": "one_percenters",
+            "BO": "bounces",
+            "GA": "goal_assist",
+        }
+
+    return game_by_game.rename(names_to_dict, axis=1)
