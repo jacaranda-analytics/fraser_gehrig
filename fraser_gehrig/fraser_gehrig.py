@@ -143,15 +143,13 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
                 ]
 
                 if table_content[0] not in gbg_content.keys():
-                    gbg_content[table_content[0]] = {
-                        table_name: table_content[1:-1]}
+                    gbg_content[table_content[0]] = {table_name: table_content[1:-1]}
                     gbg_content[table_content[0]]["opponents"] = opponents
                     gbg_content[table_content[0]]["team"] = [
                         team for _ in range(len(opponents))
                     ]
                 else:
-                    gbg_content[table_content[0]
-                                ][table_name] = table_content[1:-1]
+                    gbg_content[table_content[0]][table_name] = table_content[1:-1]
     # Turn into pandas
     for key, values in gbg_content.items():
         if "df" not in locals():
@@ -201,8 +199,7 @@ def get_game_by_game_results(year: int) -> pd.DataFrame:
 
     table_headers: str = []
     for header in html_content.find_all("thead"):
-        team_str = header.find("tr").find(
-            "th").find("a").previousSibling.string
+        team_str = header.find("tr").find("th").find("a").previousSibling.string
 
         table_headers.append(team_str.replace("Team Statistics [", "").strip())
     # Teams are repeated
