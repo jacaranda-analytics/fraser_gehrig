@@ -32,6 +32,9 @@ This package is named after the famous St Kilda forward Fraser Gehrig because, w
 A kaggle dataset of the entire set of scraped table data, using this package, is available [here](https://www.kaggle.com/datasets/gabrieldennis/afl-player-and-game-data-and-statistics18972022). 
 The script which was used to scrape the set of tables and package up the dataset for kaggle is located [here](examples/kaggle_data.py). 
 
+
+- A Kaggle notebook which uses this data to predict the 2021 Brownlow medal counts can be seen [here](https://www.kaggle.com/gabrieldennis/2021-brownlow-prediction-mlp)
+
 # Installation 
 
 Currently, there are various ways this package can be installed. 
