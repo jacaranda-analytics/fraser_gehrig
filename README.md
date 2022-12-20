@@ -1,6 +1,8 @@
 Fraser Gehrig 
 ==================
 
+[![PyPI version](https://badge.fury.io/py/fraser_gehrig.svg)](https://badge.fury.io/py/fraser_gehrig)
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
