@@ -62,9 +62,9 @@ to install the latest master branch, run the command.
 pip install https://github.com/jacaranda-analytics/fraser_gehrig/archive/master.zip
 ```
 
-## Pip 
+## Pypi 
 
-To install through pip, simply run 
+To install through Pypi, simply run 
 
 ```python 
 pip install fraser-gehrig
@@ -157,7 +157,7 @@ Young, Lewis           2            1     3     3
 
 # License 
 
-- [MIT](LICENCE.md)
+- [MIT](LICENSE.md)
 
 
 
