@@ -4,8 +4,10 @@ from datetime import datetime
 import requests
 import pandas as pd
 from typing import List
+from functools import lru_cache
 
 
+@lru_cache(maxsize=128)
 def get_player_stats(year: int = datetime.now().year) -> pd.DataFrame:
     """Retrieves the year by year player stats from
        https://afltables.com/afl/stats/
@@ -74,6 +76,7 @@ def parse_table_headers(html_content, player_index: int = 1) -> List[str]:
     return parsed_table_headers
 
 
+@lru_cache(maxsize=128)
 def get_game_by_game_stats(year: int = datetime.now().year) -> pd.DataFrame:
     """Retrieves the detailed game by game afl player statistics for a year
        between 1965 and the current year available from
@@ -162,8 +165,8 @@ def get_game_by_game_stats(year: int = datetime.now().year) -> pd.DataFrame:
         else:
             try:
                 dat = pd.DataFrame.from_dict(values)
-            except ValueError as ve:
-                print("Unable to parse values")
+            except ValueError:
+                print(f"Unable to parse values: {values} for key: {key}")
                 continue
             dat["player"] = key
             dat["round"] = dat.index.values
@@ -176,6 +179,7 @@ def get_game_by_game_stats(year: int = datetime.now().year) -> pd.DataFrame:
     ).reset_index()
 
 
+@lru_cache(maxsize=128)
 def get_game_by_game_results(year: int | None = None) -> pd.DataFrame:
     """
     Retrieve the detailed game by game afl statistics for each year
@@ -203,7 +207,7 @@ def get_game_by_game_results(year: int | None = None) -> pd.DataFrame:
     r = requests.get(URL)
     html_content = BeautifulSoup(r.content, features="html.parser")
 
-    table_headers: str = []
+    table_headers: list[str] = []
     for header in html_content.find_all("thead"):
         team_str = header.find("tr").find("th").find("a").previousSibling.string
 
