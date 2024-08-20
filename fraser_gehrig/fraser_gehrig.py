@@ -1,17 +1,18 @@
 from bs4 import BeautifulSoup
 from requests.exceptions import HTTPError
+from datetime import datetime
 import requests
 import pandas as pd
 from typing import List
 
 
-def get_player_stats(year: int = 2021) -> pd.DataFrame:
+def get_player_stats(year: int = datetime.now().year) -> pd.DataFrame:
     """Retrieves the year by year player stats from
        https://afltables.com/afl/stats/
 
     Args:
-        year (int, optional): Year to retrieve stats from. Acceptable range (1897-2021).
-         Defaults to 2021.
+        year (int, optional): Year to retrieve stats from. Acceptable range (1897-current-year).
+         Defaults to the current year.
 
     Raises:
         HTTPError:
@@ -20,7 +21,8 @@ def get_player_stats(year: int = 2021) -> pd.DataFrame:
     Returns:
         pd.DataFramet: A data frame with player names as the index and statistics as the column names
     """
-    min_year, max_year = 1897, 2022
+    current_year = datetime.now().year
+    min_year, max_year = 1897, current_year
     if not (min_year <= year <= max_year):
         raise ValueError(f"{year=} is not in range: {min_year} - {max_year}")
 
@@ -72,23 +74,24 @@ def parse_table_headers(html_content, player_index: int = 1) -> List[str]:
     return parsed_table_headers
 
 
-def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
+def get_game_by_game_stats(year: int = datetime.now().year) -> pd.DataFrame:
     """Retrieves the detailed game by game afl player statistics for a year
-       between 1965 and 2021 available from
+       between 1965 and the current year available from
        https://afltables.com/afl/stats/teams/{team}/{year}_gbg.html
 
     Args:
         year (int, optional): Year to retrieve stats from.
-        Acceptable range (1965-2021). Defaults to 2021.
+        Acceptable range (1965-current year). Defaults to current year.
 
     Raises:
-        ValueError: if year is outside the range 1965-2021
+        ValueError: if year is outside the range 1965-current year
 
     Returns:
         pd.DataFrame: A pandas data frame which
         has columns array([player, team, round, opponent, statistic, value])
     """
-    min_year, max_year = 1965, 2022
+    current_year = datetime.now().year
+    min_year, max_year = 1965, current_year
     if not (min_year <= year <= max_year):
         raise ValueError(f"{year=} is not in range: {min_year}-{max_year}")
 
@@ -153,7 +156,6 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
     # Turn into pandas
     for key, values in gbg_content.items():
         if "df" not in locals():
-
             df = pd.DataFrame.from_dict(values)
             df["player"] = key
             df["round"] = df.index.values
@@ -174,24 +176,28 @@ def get_game_by_game_stats(year: int = 2021) -> pd.DataFrame:
     ).reset_index()
 
 
-def get_game_by_game_results(year: int) -> pd.DataFrame:
+def get_game_by_game_results(year: int | None = None) -> pd.DataFrame:
     """
     Retrieve the detailed game by game afl statistics for each year
-    between 1965 and 2021
+    between 1965 and the current year
     available from https://afltables.com/afl/stats/{year}t.html
     Args:
         year (int, optional): Year to retrieve stats from.
-                             Acceptable range (1965-2021).
-                                Defaults to 2021.
+                             Acceptable range (1965-current year).
+                                Defaults to current year.
 
     Raises:
-        ValueError: if year is outside the range 1965-2021
+        ValueError: if year is outside the range 1965-current year
 
     Returns:
         pd.DataFrame:
     """
-    if year not in range(1965, 2023):
-        raise ValueError(f"{year} outside range (1965, 2023)")
+    if year is None:
+        year = datetime.now().year
+
+    min_year, max_year = 1965, datetime.now().year
+    if year not in range(min_year, max_year):
+        raise ValueError(f"{year} outside range {min_year}-{max_year}")
 
     URL = f"https://afltables.com/afl/stats/{year}t.html"
     r = requests.get(URL)
